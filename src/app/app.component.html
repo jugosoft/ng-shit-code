@@ -15,7 +15,7 @@
       *ngFor="let post of getPosts()"
       [axaxaxaxa]="post"
     >
-      <h3>Статистика</h3>
+      <h3 appStyleChooser>Статистика</h3>
       <p>Длина заголовка {{post.title.length}}</p>
       <p *ngIf="post.title.length > post.text.length; else everythingIsOk">Заголовок длиннее текста поста</p>
       <ng-template #everythingIsOk>
