@@ -1,20 +1,21 @@
-import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
+import { AfterViewInit, Directive, Input, OnChanges, SimpleChanges, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
   selector: '[appMyNgIf]'
 })
-export class MyNgIfDirective {
+export class MyNgIfDirective implements OnChanges {
+  @Input() appMyNgIf: boolean;
 
-  @Input() set appMyNgIf(condition: boolean) {
-    if (condition) {
-      this.viewContainer.createEmbeddedView(this.templateRef);
-    } else {
-      this.viewContainer.clear();
-    }
-  };
-  
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
   ) { }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.appMyNgIf) {
+      this.viewContainer.createEmbeddedView(this.templateRef);
+    } else {
+      this.viewContainer.clear();
+    }
+  }
 }
