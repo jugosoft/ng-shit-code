@@ -1,12 +1,17 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostBinding, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[appStyleChooser]'
 })
 export class StyleChooserDirective {
 
-  @Input('appStyleChooser') colour: string = 'yellow';
-  @Input('fontWeight') fontWeight: string;
+  @Input('appStyleChooser') colourInput: string = 'yellow';
+  @Input('fontWeight') fontWeightInput: string;
+
+  @HostBinding('style.color') color: string | null;
+  @HostBinding("style.fontWeight") fontWeight: string | null;
+  @HostBinding("style.cursor") cursor: string | null;
+
 
   count: number = 0;
 
@@ -26,15 +31,15 @@ export class StyleChooserDirective {
 
   @HostListener('mouseenter') 
   onMouse() {
-    this.renderer.setStyle(this.elementRef.nativeElement, 'cursor', 'pointer');
-    this.renderer.setStyle(this.elementRef.nativeElement, 'color', this.colour);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'fontWeigth', this.fontWeight);
+    this.color = this.colourInput;
+    this.fontWeight = this.fontWeightInput;
+    this.cursor = 'pointer';
   }
 
   @HostListener('mouseleave') 
   onMouseLeave() {
-    this.renderer.setStyle(this.elementRef.nativeElement, 'cursor', null);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'color', null);
-    this.renderer.setStyle(this.elementRef.nativeElement, 'fontWeigth', null);
+    this.color = null;
+    this.fontWeight = null;
+    this.cursor = null;
   }
 }
