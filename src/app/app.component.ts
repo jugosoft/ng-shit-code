@@ -1,35 +1,55 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+
+export interface IPost {
+  id: number;
+  title: string;
+  text: string;
+}
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnChanges, OnInit {
-  title: string = 'ng-shit-code';
-  users: string[] = ['Alex', 'John', 'Jane'];
-  isRed: boolean = false;
-  img_url!: string;
-  input_val: string = '';
+export class AppComponent implements OnInit {
 
-  constructor() {
-    setTimeout(() => {
-      this.img_url = 'https://picsum.photos/200';
-    }, 5000);
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.input_val);
-  }
+  private formToggled: boolean = false;
+  private posts: IPost[] = [{
+    id: 1,
+    title: 'Вчера я помыл подмышки своей кошке',
+    text: 'Коротко о тщености бытия и кошачего мытия',
+  }, {
+    id: 2,
+    title: 'Второй пост',
+    text: 'Предвестие мытарства в разрезе коррупционного беспредела',
+  }, {
+    id:32,
+    title: 'Последний пост',
+    text: 'В связи с публикацией материалов, направленных на деск...',
+  }];
 
   ngOnInit(): void {
-    // alert('Initialized');
   }
 
-  onInput(event: any) {
-    this.input_val = event.target.value;
+  isFormToggled(): boolean {
+    return this.formToggled;
   }
 
-  onClick(){
-    this.isRed = !this.isRed;
+  getPosts(): IPost[] {
+    return this.posts;
+  }
+
+  toggleForm(): void {
+    this.formToggled = !this.formToggled;
+  }
+
+  updatePosts(post: IPost): void {
+    this.posts.push(post);
+  }
+
+  deletePost(id: number) {
+    this.posts = this.posts.filter(post => post.id !== id);
   }
 }

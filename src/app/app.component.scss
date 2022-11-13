@@ -1,0 +1,72 @@
+body {
+    color: #1a1a1a;
+    font-family: Merriweather, Georgia, serif;
+    font-size: 16px;
+    font-size: 1rem;
+    line-height: 1.75;
+    background-color: #ccc;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: red;
+}
+
+ul {
+    list-style-type: none;
+}
+
+button {
+    border: 1px dashed black;
+    border-radius: 8px;
+    cursor: pointer;
+    padding: 0.5rem 1.5rem;
+}
+
+button:hover {
+    border: 1px dashed grey;
+    outline: 3px solid lightgreen;
+}
+
+button:active {
+    background-color: lightgrey;
+    outline: none;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.post {
+    display: inline-block;
+    box-sizing: border-box;
+    max-width: 45%;
+    max-height: 350px;
+    border-radius: 8px;
+    width: 500px;
+    padding: 2rem;
+    border: 1px solid black;
+    margin: 5px 10px;
+}
+
+.post:hover {
+    outline: 5px solid lightgreen;
+}
+
+input, select, textarea {
+    display: block;
+    width: 100%;
+    padding: 0.4rem;
+    font-size: 1.2em;
+    margin: 1.2rem 0;
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+input:hover, select:hover, textarea:hover {
+    outline: 2px solid lightgreen;
+}

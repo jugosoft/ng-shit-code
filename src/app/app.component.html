@@ -1,41 +1,24 @@
-<style>
-  div {
-    width: 200px;
-    height: 200px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    display: inline-block;
-  }
-
-  .isredbox {
-    background-color: red;
-  }
-</style>
-
-<div>
-  {{title}}
-  <input [(ngModel)]="title" type="text" />
-</div>
-
-<div [ngStyle]=""></div>
-
-<div>
-  <h1>{{ this.title }}</h1>
-  <span>{{ this.users | json | uppercase }}</span>
-</div>
-<div>
-  <img [src]="this.img_url" alt="Just look at that!">
-</div>
-
-<div>
-  <input (input)="onInput($event)" type="text">
-  <div [innerText]="this.input_val">
+<div class="container">
+  <h1>Посты пользователя сети Интернет</h1>
+  <div>
+    <button (click)="toggleForm()">Показато форму</button>
   </div>
+  <div *ngIf="isFormToggled()">
+    <app-post-form
+      (onAdd)="updatePosts($event)"
+    ></app-post-form>
+  </div>
+  <br>
+  <div *ngIf="getPosts().length; else noPosts">
+    <app-post
+      (onDelete)="deletePost($event)"
+      *ngFor="let post of getPosts()"
+      [axaxaxaxa]="post"
+    ></app-post>
+  </div>
+  <ng-template #noPosts>
+    <div>
+      Нет постов для отображения
+    </div>
+  </ng-template>
 </div>
-
-<div [class.isredbox]="isRed"></div>
-<div [class.isredbox]="!isRed"></div>
-<div>
-  <input (click)="onClick()" type="button" value="He-he-he">
-</div>
-<!-- <input type="checkbox" [(ngModel)]="isRed" /> -->
