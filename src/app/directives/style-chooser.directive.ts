@@ -1,7 +1,11 @@
 import { Directive, ElementRef, HostBinding, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
-  selector: '[appStyleChooser]'
+  selector: '[appStyleChooser]',
+//  host: {
+//    '(mouseenter)': 'onMouseEnter()',
+//    '(mouseleave)': 'onMouseLeave()',
+//  }
 })
 export class StyleChooserDirective {
 
