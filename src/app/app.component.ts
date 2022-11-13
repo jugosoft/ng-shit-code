@@ -42,10 +42,11 @@ export class AppComponent implements OnInit {
   }
 
   toggleForm(): void {
-    this.formToggled = !this.formToggled;
+    this.formToggled = new Boolean(!this.formToggled).valueOf();
   }
 
   updatePosts(post: IPost): void {
+    this.toggleForm();
     this.posts.push(post);
   }
 

@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Посты пользователя сети Интернет</h1>
   <div>
-    <button (click)="toggleForm()">Показато форму</button>
+    <button (click)="toggleForm()">Показатb форму</button>
   </div>
   <div *ngIf="isFormToggled()">
     <app-post-form
@@ -15,11 +15,11 @@
       *ngFor="let post of getPosts()"
       [axaxaxaxa]="post"
     >
-      <h3 appStyleChooser>Статистика</h3>
-      <p>Длина заголовка {{post.title.length}}</p>
+      <h3 [appStyleChooser]="'green'" fontWeight="100">Статистика</h3>
+      <p [appStyleChooser]="'blue'" fontWeight="100">Длина заголовка {{post.title.length}}</p>
       <p *ngIf="post.title.length > post.text.length; else everythingIsOk">Заголовок длиннее текста поста</p>
       <ng-template #everythingIsOk>
-        <p>Пост форматирован нормально</p>
+        <p [appStyleChooser]="'red'" fontWeight="thin">Пост форматирован нормально</p>
       </ng-template>
     </app-post>
   </div>
