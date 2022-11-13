@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { StyleChooserDirective } from './directives/style-chooser.directive';
 import { PostFormComponent } from './post-form/post-form.component';
 import { PostComponent } from './post/post.component';
+import { MyNgIfDirective } from './directives/my-ng-if.directive';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { PostComponent } from './post/post.component';
     PostFormComponent,
     PostComponent,
     StyleChooserDirective,
+    MyNgIfDirective,
   ],
   imports: [
     BrowserModule,

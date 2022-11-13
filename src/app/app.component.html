@@ -3,7 +3,7 @@
   <div>
     <button (click)="toggleForm()">Показатb форму</button>
   </div>
-  <div *ngIf="isFormToggled()">
+  <div *appMyNgIf="isFormToggled()">
     <app-post-form
       (onAdd)="updatePosts($event)"
     ></app-post-form>
