@@ -14,7 +14,14 @@
       (onDelete)="deletePost($event)"
       *ngFor="let post of getPosts()"
       [axaxaxaxa]="post"
-    ></app-post>
+    >
+      <h3>Статистика</h3>
+      <p>Длина заголовка {{post.title.length}}</p>
+      <p *ngIf="post.title.length > post.text.length; else everythingIsOk">Заголовок длиннее текста поста</p>
+      <ng-template #everythingIsOk>
+        <p>Пост форматирован нормально</p>
+      </ng-template>
+    </app-post>
   </div>
   <ng-template #noPosts>
     <div>
