@@ -15,6 +15,7 @@ export class PostsComponent implements OnInit, OnChanges {
 
   constructor(
     private postsService: PostsService,
+    private postsServiceCopy: PostsService,
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -32,12 +33,22 @@ export class PostsComponent implements OnInit, OnChanges {
   }
 
   updatePosts(post: IPost): void {
-    console.log(post);
-    
     this.postsService.posts.push(post);
   }
 
   deletePost(id: number) {
     this.postsService.posts = this.postsService.posts.filter(post => post.id !== id);
   }
+
+  getPostsCopy() {
+    return this.postsService.posts;
+  }
+
+  updatePostsCopy(post: IPost): void {
+    this.postsService.posts.push(post);
+  }
+
+  deletePostCopy(id: number) {
+    this.postsService.posts = this.postsService.posts.filter(post => post.id !== id);
+  } 
 }
