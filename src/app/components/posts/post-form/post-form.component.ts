@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { IPost } from 'src/app/app.component';
 
 @Component({
@@ -11,27 +12,23 @@ export class PostFormComponent implements OnInit {
 
   @Output() onAdd: EventEmitter<IPost> = new EventEmitter<IPost>();
 
+  form: FormGroup;
+
   public title: string;
   public text: string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.form = new FormGroup({
+      email: new FormControl('sample@mylo.com'),
+      password: new FormControl(''),
+    });
   }
 
-  addPost() {
-    if (!this.title || !this.text) {
-      return;
-    }
-    const post: IPost = {
-      id: (Math.random() * 100) % 10,
-      title: this.title,
-      text: this.text,
-    };
-
-    this.onAdd.emit(post);
-
-    this.text = '';
-    this.title = '';
+  submit() {
+    Object.entries(this.form.value).forEach(
+      (element) => console.log(`Form element: ${element[0]} with value ${element[1]}`)
+    );
   }
 }

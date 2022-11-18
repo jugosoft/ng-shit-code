@@ -1,14 +1,14 @@
-<div>
+<form [formGroup]="form" (submit)="submit()">
     <input 
         type="text" 
-        placeholder="Название поста"
-        [(ngModel)]="title"
+        placeholder="Электронная почта"
+        formControlName="email"
     >
     <input 
         type="text"
-        placeholder="Текст поста"
-        [(ngModel)]="text"
+        placeholder="Пароль"
+        formControlName="password"
     >
 
-    <button (click)="addPost()">Добавить пост</button>
-</div>
+    <button type="submit">Добавить пользователя</button>
+</form>

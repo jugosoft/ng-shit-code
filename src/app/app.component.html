@@ -9,16 +9,3 @@
   <br>
   <app-posts [newPost]="this.newPost"></app-posts>
 </div>
-<hr>
-<div class="container">
-  <h1>Посты пользователя сети {{ 'Интернет' | stringRepeater }}</h1>
-  <div>
-    <button (click)="toggleForm()">Показатb форму</button>
-  </div>
-  <div *appMyNgIf="isFormToggled()">
-    <app-post-form (onAdd)="addPost($event)"></app-post-form>
-  </div>
-  <br>
-  <app-posts [newPost]="this.newPost"></app-posts>
-</div>
-
