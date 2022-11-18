@@ -38,6 +38,21 @@ button:active {
     outline: none;
 }
 
+small {
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    margin: 0.7rem 2rem;
+}
+
+small:hover {
+    outline: 5px solid lightgreen;
+    cursor: pointer;
+}
+
+.danger {
+    background-color: rgb(250, 136, 136);
+}
+
 .container {
     max-width: 1000px;
     margin: 0 auto;
@@ -63,7 +78,8 @@ input, select, textarea {
     width: 100%;
     padding: 0.4rem;
     font-size: 1.2em;
-    margin: 1.2rem 0;
+    margin-top: 1.2rem;
+    margin-bottom: 0.4rem;
     border: 1px solid black;
     border-radius: 4px;
 }
