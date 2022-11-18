@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { IPost } from '../app.component';
+import { IPost } from 'src/app/app.component';
 
 @Component({
   selector: 'app-post',
@@ -17,7 +17,7 @@ export class PostComponent implements OnInit {
   }
 
   deletePost(id: number): boolean {
-    if(!id || id < 0) {
+    if (!id || id < 0) {
       return false;
     }
 

@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { IPost } from '../app.component';
+import { IPost } from 'src/app/app.component';
 
 @Component({
   selector: 'app-post-form',
@@ -23,7 +23,6 @@ export class PostFormComponent implements OnInit {
     if (!this.title || !this.text) {
       return;
     }
-
     const post: IPost = {
       id: (Math.random() * 100) % 10,
       title: this.title,

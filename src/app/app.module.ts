@@ -4,15 +4,17 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { StyleChooserDirective } from './directives/style-chooser.directive';
-import { PostFormComponent } from './post-form/post-form.component';
-import { PostComponent } from './post/post.component';
 import { MyNgIfDirective } from './directives/my-ng-if.directive';
 import { DividerPipe } from './pipes/divider.pipe';
 import { StringRepeaterPipe } from './pipes/string-repeater.pipe';
+import { PostsComponent } from './components/posts/posts.component';
+import { PostFormComponent } from './components/posts/post-form/post-form.component';
+import { PostComponent } from './components/posts/post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    PostsComponent,
     PostFormComponent,
     PostComponent,
     StyleChooserDirective,

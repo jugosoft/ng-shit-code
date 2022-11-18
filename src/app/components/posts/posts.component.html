@@ -1,0 +1,13 @@
+<div *ngIf="getPosts().length; else noPosts">
+    <app-post (onDelete)="deletePost($event)" *ngFor="let post of getPosts()" [axaxaxaxa]="post">
+        <p *ngIf="post.title.length > post.text.length; else everythingIsOk">Заголовок длиннее текста поста</p>
+        <ng-template #everythingIsOk>
+            <p [appStyleChooser]="'red'" fontWeight="thin">Пост форматирован нормально</p>
+        </ng-template>
+    </app-post>
+</div>
+<ng-template #noPosts>
+    <div>
+        Нет постов для отображения
+    </div>
+</ng-template>

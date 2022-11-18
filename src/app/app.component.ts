@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 export interface IPost {
   id: number;
@@ -14,21 +14,10 @@ export interface IPost {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-
+  // @Output() onAdd: EventEmitter<IPost> = new EventEmitter<IPost>();
   private formToggled: boolean = false;
-  private posts: IPost[] = [{
-    id: 1,
-    title: 'Вчера я помыл подмышки своей кошке',
-    text: 'Коротко о тщености бытия и кошачего мытия',
-  }, {
-    id: 2,
-    title: 'Второй пост',
-    text: 'Предвестие мытарства в разрезе коррупционного беспредела',
-  }, {
-    id:32,
-    title: 'Последний пост',
-    text: 'В связи с публикацией материалов, направленных на деск...',
-  }];
+
+  public newPost: IPost;
 
   ngOnInit(): void {
   }
@@ -37,20 +26,12 @@ export class AppComponent implements OnInit {
     return this.formToggled;
   }
 
-  getPosts(): IPost[] {
-    return this.posts;
-  }
-
   toggleForm(): void {
     this.formToggled = new Boolean(!this.formToggled).valueOf();
   }
 
-  updatePosts(post: IPost): void {
+  addPost(post: IPost){
+    this.newPost = post;
     this.toggleForm();
-    this.posts.push(post);
-  }
-
-  deletePost(id: number) {
-    this.posts = this.posts.filter(post => post.id !== id);
   }
 }
