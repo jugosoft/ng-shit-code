@@ -10,5 +10,5 @@
         formControlName="password"
     >
 
-    <button type="submit">Добавить пользователя</button>
+    <button type="submit" [disabled]="this.form.invalid">Добавить</button>
 </form>

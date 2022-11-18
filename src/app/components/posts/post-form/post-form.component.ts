@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from 'src/app/app.component';
 
 @Component({
@@ -14,19 +14,20 @@ export class PostFormComponent implements OnInit {
 
   form: FormGroup;
 
-  public title: string;
-  public text: string;
-
   constructor() { }
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('sample@mylo.com'),
-      password: new FormControl(''),
+      email: new FormControl('sample@mylo.com', [Validators.email, Validators.required]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)]),
     });
   }
 
   submit() {
+    if (!this.form) {
+      return;  
+    }
+
     Object.entries(this.form.value).forEach(
       (element) => console.log(`Form element: ${element[0]} with value ${element[1]}`)
     );
