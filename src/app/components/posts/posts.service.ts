@@ -1,9 +1,7 @@
 import { Injectable } from "@angular/core";
 import { IPost } from "src/app/app.component";
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class PostsService {
   public posts: IPost[] = [{
     id: 1,

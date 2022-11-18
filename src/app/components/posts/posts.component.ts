@@ -7,6 +7,7 @@ import { PostsService } from './posts.service';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  providers:[PostsService],
 })
 export class PostsComponent implements OnInit, OnChanges {
 
