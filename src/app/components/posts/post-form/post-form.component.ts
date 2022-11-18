@@ -9,10 +9,13 @@ import { IPost } from 'src/app/app.component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostFormComponent implements OnInit {
-
   @Output() onAdd: EventEmitter<IPost> = new EventEmitter<IPost>();
 
   form: FormGroup;
+  focus = {
+    email: true,
+    password: false,
+  };
 
   constructor() { }
 
@@ -25,7 +28,7 @@ export class PostFormComponent implements OnInit {
 
   submit() {
     if (!this.form) {
-      return;  
+      return;
     }
 
     Object.entries(this.form.value).forEach(

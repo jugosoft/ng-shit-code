@@ -1,23 +1,51 @@
-<form [formGroup]="form" (submit)="submit()">
+<form
+    [formGroup]="form"
+    (submit)="submit()"
+>
     <div>
-        <input type="text" placeholder="Электронная почта" formControlName="email">
-        <small class="danger" *ngIf="form.get('email')!.errors?.['required'] && form.get('email')!.touched">
+        <input
+            type="text"
+            placeholder="Электронная почта"
+            formControlName="email"
+        >
+        <small
+            class="danger"
+            *ngIf="form.get('email')!.errors?.['required'] && form.get('email')!.touched"
+        >
             Поле email должно быть заполнено
         </small>
-        <small class="danger" *ngIf="form.get('email')!.errors?.['email'] && form.get('email')!.touched">
+        <small
+            class="danger"
+            *ngIf="form.get('email')!.errors?.['email'] && form.get('email')!.touched"
+        >
             Email некорректный
         </small>
     </div>
     <div>
-        <input type="text" placeholder="Пароль" formControlName="password">
-        <small class="danger" *ngIf="form.get('password')!.errors?.['required'] && form.get('password')!.touched">
+        <input
+            type="text"
+            placeholder="Пароль"
+            formControlName="password"
+        >
+        <small
+            class="danger"
+            *ngIf="form.get('password')!.errors?.['required'] && form.get('password')!.touched"
+        >
             Пароль обязателен для заполнения
         </small>
-        <small class="danger" *ngIf="form.get('password')!.errors?.['minlength'] && form.get('password')!.touched">
+        <small
+            class="danger"
+            *ngIf="form.get('password')!.errors?.['minlength'] && form.get('password')!.touched"
+        >
             Пароль слишком короткий, придумай длиннее
         </small>
     </div>
     <br>
 
-    <button type="submit" [disabled]="this.form.invalid">Добавить</button>
+    <button
+        type="submit"
+        [disabled]="this.form.invalid"
+    >
+        Добавить
+    </button>
 </form>
