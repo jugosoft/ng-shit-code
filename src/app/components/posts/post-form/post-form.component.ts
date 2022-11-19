@@ -12,10 +12,6 @@ export class PostFormComponent implements OnInit {
   @Output() onAdd: EventEmitter<IPost> = new EventEmitter<IPost>();
 
   form: FormGroup;
-  focus = {
-    email: true,
-    password: false,
-  };
 
   constructor() { }
 
@@ -23,6 +19,11 @@ export class PostFormComponent implements OnInit {
     this.form = new FormGroup({
       email: new FormControl('sample@mylo.com', [Validators.email, Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      address: new FormGroup({
+        country: new FormControl('by', Validators.required),
+        city: new FormControl('', Validators.required),
+        address: new FormControl('', Validators.required),
+      })
     });
   }
 

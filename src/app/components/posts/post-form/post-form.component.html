@@ -3,6 +3,7 @@
     (submit)="submit()"
 >
     <div>
+        <h3>Зарегистрируйте меня как</h3>
         <input
             type="text"
             placeholder="Электронная почта"
@@ -20,8 +21,6 @@
         >
             Email некорректный
         </small>
-    </div>
-    <div>
         <input
             type="text"
             placeholder="Пароль"
@@ -41,6 +40,37 @@
         </small>
     </div>
     <br>
+    <div formGroupName="address">
+        <h3>Я проживаю</h3>
+        <select formControlName="country">
+            <option value="ru">Россиюшка</option>
+            <option value="by">Белоруссия</option>
+        </select>
+
+        <input
+            type="text"
+            placeholder="Адрес"
+            formControlName="city"
+        >
+        <small
+            class="danger"
+            *ngIf="form.get('city')!.errors?.['required']"
+        >
+            Город обязателен для заполнения
+        </small>
+
+        <input
+            type="text"
+            placeholder="Мой адрес"
+            formControlName="address"
+        >
+        <small
+            class="danger"
+            *ngIf="form.get('address')!.errors?.['required'] && form.get('address')!.touched"
+        >
+            Адрес обязателен для заполнения
+        </small>
+    </div>
 
     <button
         type="submit"
