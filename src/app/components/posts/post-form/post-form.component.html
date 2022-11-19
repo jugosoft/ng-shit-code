@@ -43,7 +43,7 @@
 
     <div formGroupName="address">
         <h3>Я проживаю</h3>
-        <select formControlName="country">
+        <select formControlName="country" (change)="changeCountry()">
             <option value="ru">Россиюшка</option>
             <option value="by">Белоруссия</option>
         </select>
@@ -64,7 +64,6 @@
             type="text"
             placeholder="Мой адрес"
             formControlName="address"
-            (change)="changeAddress()"
         >
         <small
             class="danger"

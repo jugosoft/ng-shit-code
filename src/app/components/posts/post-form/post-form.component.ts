@@ -27,9 +27,10 @@ export class PostFormComponent implements OnInit {
     });
   }
 
-  changeAddress() {
-    console.log(this.form);
-    
+  changeCountry(): void {
+    const cityControl = this.form.get('address')?.get('city') as FormControl;
+    cityControl?.setValue('');
+    cityControl.markAsUntouched();
   }
 
   submit() {
