@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from 'src/app/app.component';
 
 @Component({
@@ -23,7 +23,12 @@ export class PostFormComponent implements OnInit {
         country: new FormControl('by', Validators.required),
         city: new FormControl('', Validators.required),
         address: new FormControl('', Validators.required),
-      })
+      }),
+      reasons: new FormArray([
+        new FormControl('Первая причина это - ты', [Validators.required, Validators.minLength(5)]),
+        new FormControl('А вторая - все твои мечты...', [Validators.required, Validators.minLength(5)]),
+        new FormControl('', [Validators.required, Validators.minLength(5)]),
+      ]),
     });
   }
 
@@ -31,6 +36,9 @@ export class PostFormComponent implements OnInit {
     const cityControl = this.form.get('address')?.get('city') as FormControl;
     cityControl?.setValue('');
     cityControl.markAsUntouched();
+    const adressControl = this.form.get('address')?.get('address') as FormControl;
+    adressControl?.setValue('');
+    adressControl.markAsUntouched();
   }
 
   submit() {
@@ -38,8 +46,22 @@ export class PostFormComponent implements OnInit {
       return;
     }
 
-    Object.entries(this.form.value).forEach(
-      (element) => console.log(`Form element: ${element[0]} with value ${element[1]}`)
-    );
+    console.log({... this.form.value});
+    
+  }
+
+  getReasons(): AbstractControl[] {
+    return (this.form.get('reasons') as FormArray)?.controls;
+  }
+
+  addReason() {
+    const newReason = new FormControl('', [Validators.required, Validators.minLength(5)]);
+    (this.form.get('reasons') as FormArray).push(newReason);
+    console.log(this.form);
+  }
+
+  deleteReason(idx: number): boolean {
+   (this.form.get('reasons') as FormArray).removeAt(idx);
+   return true;
   }
 }

@@ -43,7 +43,10 @@
 
     <div formGroupName="address">
         <h3>Я проживаю</h3>
-        <select formControlName="country" (change)="changeCountry()">
+        <select
+            formControlName="country"
+            (change)="changeCountry()"
+        >
             <option value="ru">Россиюшка</option>
             <option value="by">Белоруссия</option>
         </select>
@@ -73,10 +76,45 @@
         </small>
     </div>
 
+    <div formArrayName="reasons">
+        <h3>Расскажите, почему Вы пришли сюда</h3>
+
+        <div *ngFor="let reason of getReasons(); let idx = index">
+            <input
+                style="width: 75%;"
+                type="text"
+                placeholder="Следующая причина"
+                [formControlName]="idx"
+            >
+            <small 
+                style="margin-bottom: 0.8rem;"
+                class="danger"
+                *ngIf="getReasons()[idx]?.errors?.['required'] && getReasons()[idx]?.touched"
+            >
+                Текст причины обязателен для заполнения
+            </small>
+            <small 
+                style="margin-bottom: 0.8rem;"
+                class="danger"
+                *ngIf="getReasons()[idx]?.errors?.['minlength'] && getReasons()[idx]?.touched"
+            >
+                Слишком короткая причина. Текущая длина - {{getReasons()[idx].errors?.['minlength']?.actualLength}}
+                из {{getReasons()[idx].errors?.['minlength']?.requiredLength}}
+            </small>
+            <button
+                type="button"
+                (click)="deleteReason(idx)"
+            >
+                Delete
+            </button>
+        </div>
+        <hr>
+        <button (click)="addReason()">Добавить причину</button>
+    </div>
     <button
         type="submit"
         [disabled]="this.form.invalid"
     >
-        Добавить
+        Создать учётную запись
     </button>
 </form>
