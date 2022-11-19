@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from 'src/app/app.component';
 
@@ -27,8 +27,13 @@ export class PostFormComponent implements OnInit {
     });
   }
 
+  changeAddress() {
+    console.log(this.form);
+    
+  }
+
   submit() {
-    if (!this.form) {
+    if (!this.form || this.form.invalid) {
       return;
     }
 

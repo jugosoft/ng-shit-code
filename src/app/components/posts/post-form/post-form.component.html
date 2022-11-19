@@ -11,13 +11,13 @@
         >
         <small
             class="danger"
-            *ngIf="form.get('email')!.errors?.['required'] && form.get('email')!.touched"
+            *ngIf="form.get('email')?.errors?.['required'] && form.get('email')?.touched"
         >
             Поле email должно быть заполнено
         </small>
         <small
             class="danger"
-            *ngIf="form.get('email')!.errors?.['email'] && form.get('email')!.touched"
+            *ngIf="form.get('email')?.errors?.['email'] && form.get('email')?.touched"
         >
             Email некорректный
         </small>
@@ -28,18 +28,19 @@
         >
         <small
             class="danger"
-            *ngIf="form.get('password')!.errors?.['required'] && form.get('password')!.touched"
+            *ngIf="form.get('password')?.errors?.['required'] && form.get('password')?.touched"
         >
             Пароль обязателен для заполнения
         </small>
         <small
             class="danger"
-            *ngIf="form.get('password')!.errors?.['minlength'] && form.get('password')!.touched"
+            *ngIf="form.get('password')?.errors?.['minlength'] && form.get('password')?.touched"
         >
             Пароль слишком короткий, придумай длиннее
         </small>
     </div>
     <br>
+
     <div formGroupName="address">
         <h3>Я проживаю</h3>
         <select formControlName="country">
@@ -49,12 +50,12 @@
 
         <input
             type="text"
-            placeholder="Адрес"
+            placeholder="Город"
             formControlName="city"
         >
         <small
             class="danger"
-            *ngIf="form.get('city')!.errors?.['required']"
+            *ngIf="form.get('address')?.get('city')?.errors?.['required'] && form.get('address')?.get('city')?.touched"
         >
             Город обязателен для заполнения
         </small>
@@ -63,10 +64,11 @@
             type="text"
             placeholder="Мой адрес"
             formControlName="address"
+            (change)="changeAddress()"
         >
         <small
             class="danger"
-            *ngIf="form.get('address')!.errors?.['required'] && form.get('address')!.touched"
+            *ngIf="form.get('address')?.get('address')?.errors?.['required'] && form.get('address')?.get('address')?.touched"
         >
             Адрес обязателен для заполнения
         </small>
