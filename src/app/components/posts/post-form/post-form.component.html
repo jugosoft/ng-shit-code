@@ -21,6 +21,12 @@
         >
             Email некорректный
         </small>
+        <small
+            class="danger"
+            *ngIf="form.get('email')?.errors?.['userForbidden'] && form.get('email')?.touched"
+        >
+            Email в списке запрещённых
+        </small>
         <input
             type="text"
             placeholder="Пароль"

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from 'src/app/app.component';
-import { createPasswordStrengthValidator } from 'src/app/validators/custom.validator';
+import { createForbiddenUsersValidator, createPasswordStrengthValidator } from 'src/app/validators/custom.validator';
 
 @Component({
   selector: 'app-post-form',
@@ -18,7 +18,7 @@ export class PostFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      email: new FormControl('sample@mylo.com', [Validators.email, Validators.required]),
+      email: new FormControl('sample@mylo.com', [Validators.email, Validators.required], [createForbiddenUsersValidator()]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       address: new FormGroup({
         country: new FormControl('by', Validators.required),
