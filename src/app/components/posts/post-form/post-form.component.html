@@ -63,6 +63,13 @@
             Город обязателен для заполнения
         </small>
 
+        <small
+            class="danger"
+            *ngIf="form.get('address')?.get('city')?.errors?.['forbiddenCity'] && form.get('address')?.get('city')?.touched"
+        >
+            Регистрация недоступна для указанного города
+        </small>
+
         <input
             type="text"
             placeholder="Мой адрес"

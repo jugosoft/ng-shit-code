@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { IPost } from 'src/app/app.component';
+import { createPasswordStrengthValidator } from 'src/app/validators/custom.validator';
 
 @Component({
   selector: 'app-post-form',
@@ -21,7 +22,7 @@ export class PostFormComponent implements OnInit {
       password: new FormControl('', [Validators.required, Validators.minLength(8)]),
       address: new FormGroup({
         country: new FormControl('by', Validators.required),
-        city: new FormControl('', Validators.required),
+        city: new FormControl('', [Validators.required, createPasswordStrengthValidator()]),
         address: new FormControl('', Validators.required),
       }),
       reasons: new FormArray([
