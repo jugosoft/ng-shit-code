@@ -42,13 +42,17 @@ export class PostFormComponent implements OnInit {
     adressControl.markAsUntouched();
   }
 
+  resetForm(): void{
+    this.form.reset();
+  }
+
   submit() {
     if (!this.form || this.form.invalid) {
       return;
     }
 
     console.log({... this.form.value});
-    
+    this.resetForm();
   }
 
   getReasons(): AbstractControl[] {

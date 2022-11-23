@@ -23,7 +23,7 @@
         </small>
         <small
             class="danger"
-            *ngIf="form.get('email')?.errors?.['userForbidden'] && form.get('email')?.touched"
+            *ngIf="form.get('email')?.errors?.['userForbidden']"
         >
             Email в списке запрещённых
         </small>
@@ -130,4 +130,8 @@
     >
         Создать учётную запись
     </button>
+
+    <button
+        (click)="resetForm()"
+    >Очистить форму</button>
 </form>
