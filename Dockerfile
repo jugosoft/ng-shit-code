@@ -1,9 +1,13 @@
 FROM node:10-alpine as build-stage
-WORKDIR /app
-COPY package*.json /app/
-RUN npm install
-COPY ./ /app/
+
 ARG ENVIROMENT
+
+WORKDIR /app
+COPY ./package.json /app/
+COPY ./ /app/
+
+RUN npm install
+
 RUN npm run build -- --output-path=./dist/out --configuration $ENVIROMENT --verbose
 
 FROM nginx:1.15
