@@ -15,8 +15,7 @@ WORKDIR /ng-app
 COPY . .
 
 ## Build the angular app in production mode and store the artifacts in dist folder
-ARG NG_ENV=production
-RUN npm run ng build -- --configuration=$NG_ENV
+RUN npm run ng build -- --configuration=production
 
 
 ### STAGE 2: Setup ###

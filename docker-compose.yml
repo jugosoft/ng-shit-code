@@ -4,8 +4,6 @@ services:
   client:
     build:
       context: .
-      args:
-        NG_ENV: local
     restart: always
     ports:
       - 4200:80
