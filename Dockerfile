@@ -4,11 +4,11 @@ ARG ENVIROMENT
 
 WORKDIR /app
 COPY ./package.json /app/
+RUN npm install
+
 COPY ./ /app/
 
-CMD [ "npm", "install" ]
-
-RUN npm run build -- --output-path=./dist/out --configuration $ENVIROMENT --verbose
+CMD [ "npm", "run", "build", "--", "--output-path=./dist/out", "--configuration", "$ENVIROMENT"]
 
 FROM nginx:1.15
 COPY --from=build-stage /app/dist/out/ /usr/share/nginx/html
