@@ -2,10 +2,7 @@ version: "3.0"
 
 services:
   angularapp:
-    build: 
-      context: .
-      args:
-        ENVIROMENT: production
+    build: .
     container_name: angularapp
     ports:
       - "4200:80"
