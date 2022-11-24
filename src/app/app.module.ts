@@ -10,6 +10,7 @@ import { StringRepeaterPipe } from './pipes/string-repeater.pipe';
 import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/posts/post-form/post-form.component';
 import { PostComponent } from './components/posts/post/post.component';
+import { StarsComponent } from './components/stars/stars.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PostComponent } from './components/posts/post/post.component';
     MyNgIfDirective,
     DividerPipe,
     StringRepeaterPipe,
+    StarsComponent,
   ],
   imports: [
     BrowserModule,

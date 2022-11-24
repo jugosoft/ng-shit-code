@@ -25,6 +25,7 @@ export class PostFormComponent implements OnInit {
         city: new FormControl('', [Validators.required, createPasswordStrengthValidator()]),
         address: new FormControl('', Validators.required),
       }),
+      rateForm: new FormControl('', Validators.required),
       reasons: new FormArray([
         new FormControl('Первая причина это - ты', [Validators.required, Validators.minLength(5)]),
         new FormControl('А вторая - все твои мечты...', [Validators.required, Validators.minLength(5)]),

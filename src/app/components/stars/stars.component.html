@@ -1,0 +1,12 @@
+<div class="star-rating">
+    <ng-container *ngFor="let i of [1, 2, 3, 4, 5]">
+        <input
+            [formControl]="starControl"
+            style="visibility: hidden;"
+            type="radio"
+            id="{{i}}"
+            [value]="i"
+        >
+        <label for="{{i}}"></label>
+    </ng-container>
+</div>
