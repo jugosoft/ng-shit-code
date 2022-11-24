@@ -5,7 +5,7 @@ services:
     build: 
       context: .
       args:
-        - ENVIROMENT: "production"
+        ENVIROMENT: production
     container_name: angularapp
     ports:
       - "4200:80"
