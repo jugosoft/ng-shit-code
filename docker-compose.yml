@@ -1,9 +1,8 @@
-version: "3.0"
+version: "3"
 
-services:
-  client:
-    build:
-      context: .
-    restart: always
-    ports:
-      - 4200:80
+services: 
+    angular-app:
+        build: .
+        ports: 
+            - 8080:80
+            
