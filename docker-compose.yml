@@ -1,11 +1,9 @@
 version: "23.0"
 
 services:
-  angular-nginx-docker:
-    image: angular-nginx-docker
+  client:
     build: .
     environment:
       NODE_ENV: production
     ports:
-      - 80:80
-      
+      - 8080:80
