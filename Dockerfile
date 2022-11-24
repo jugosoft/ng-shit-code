@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ./package.json /app/
 COPY ./ /app/
 
-RUN npm install
+CMD [ "npm", "install" ]
 
 RUN npm run build -- --output-path=./dist/out --configuration $ENVIROMENT --verbose
 
