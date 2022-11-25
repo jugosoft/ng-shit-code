@@ -2,7 +2,11 @@ version: "3.0"
 
 services:
   angularapp:
-    build: .
+    pull_policy: build
+    build: 
+      dockerfile: Dockerfile
+      context: .
     container_name: angularapp
     ports:
       - "4200:60000"
+      
