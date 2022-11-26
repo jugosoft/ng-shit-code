@@ -4,7 +4,7 @@ services:
   angularapp:
     build: 
       dockerfile: Dockerfile
-      context: /
+      context: .
     container_name: angularapp
     ports:
       - "4321:80"
