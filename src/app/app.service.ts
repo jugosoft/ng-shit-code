@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, delay, Observable, throwError } from 'rxjs';
 import { ITodo } from './interfaces/ITodo';
@@ -21,8 +21,14 @@ export class AppService {
   }
 
   fetchAllTodos(count?: number): Observable<ITodo[]> {
+    const headers = new HttpHeaders({
+      'fuckYou': 'fuckYouToo',
+    });
+
     const limitString = count ? `?_limit=${count}` : '';
-    return this.http.get<ITodo[]>(`${this.API_URL}/${limitString}`);
+    return this.http.get<ITodo[]>(`${this.API_URL}/${limitString}`, {
+      headers,
+    });
   }
 
   finishTodo(id: number): Observable<ITodo | Error> {

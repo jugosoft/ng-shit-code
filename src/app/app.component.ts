@@ -87,7 +87,11 @@ export class AppComponent implements OnInit {
     this.error = '';
 
     this.todosService.finishTodo(id).subscribe(response => {
-      const modifiedTodo = this.todos.find(todo => todo.id === response.id);
+      if (response instanceof Error) {
+        return;
+      }
+
+      const modifiedTodo = this.todos.find(todo => todo.id === response?.id);
       if (modifiedTodo) {
         modifiedTodo.completed = true;
         this.cdr.detectChanges();
