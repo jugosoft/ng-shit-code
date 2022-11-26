@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { delay, Observable } from 'rxjs';
+import { catchError, delay, Observable, throwError } from 'rxjs';
 import { ITodo } from './interfaces/ITodo';
 
 @Injectable({
@@ -25,9 +25,13 @@ export class AppService {
     return this.http.get<ITodo[]>(`${this.API_URL}/${limitString}`);
   }
 
-  finishTodo(id: number): Observable<ITodo> {
+  finishTodo(id: number): Observable<ITodo | Error> {
     return this.http.put<ITodo>(`${this.API_URL}/${id}`, {
       completed: true,
-    });
+    }).pipe(
+      catchError(error => {
+        return throwError(error);
+      })
+    );
   }
 }
