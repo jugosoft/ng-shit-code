@@ -7,26 +7,41 @@
     </div>
     <br>
     <div>
-        <h4>Всего задач {{todos.length}}</h4>
+        <h4>Всего задач {{todos && todos.length}}</h4>
     </div>
 
     <div>
         <h4>Новая задача</h4>
         <div class="card">
-            <input type="text" name="title" id="title" [(ngModel)]="todoTitle" placeholder="Название"/>
+            <input
+                type="text"
+                name="title"
+                id="title"
+                [(ngModel)]="todoTitle"
+                placeholder="Название"
+            >
             <button (click)="addTodo()">Добавить</button>
+            <button (click)="fetchAllTodos()">Загрузить все дела</button>
+        </div>
+    </div>
+    <div *ngIf="!loading; else loadingBlock">
+        <div
+            class="card"
+            *ngFor="let todo of todos"
+        >
+            <p>
+                <span [class.completed]="todo.completed">{{todo.title}}</span>
+                <span>
+                    <button>Удалить</button>
+                    <button [disabled]="todo.completed">Завершить</button>
+                </span>
+            </p>
         </div>
     </div>
 
-    <div class="card" *ngFor="let todo of todos">
-        <p>
-            <span [class.completed]="todo.completed">{{todo.title}}</span>
-            <span>
-                <button>Удалить</button>
-                <button [disabled]="todo.completed" >Завершить</button>
-            </span>
-        </p>
-    </div>
+    <ng-template #loadingBlock>
+        Загрузка списка
+    </ng-template>
     <br>
     <!-- <app-posts [newPost]="this.newPost"></app-posts> -->
 </div>

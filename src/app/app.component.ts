@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, ViewEncapsulation } from '@angular/core';
 import { ITodo } from './interfaces/ITodo';
 import { IPost } from './interfaces/IPost';
+import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit {
   public todos: ITodo[];
   public newPost: IPost;
   public todoTitle: string;
+  loading: boolean = false;
 
   constructor(
     private http: HttpClient,
@@ -22,11 +24,7 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get('https://jsonplaceholder.typicode.com/todos')
-      .subscribe(response => {
-        this.todos = response as ITodo[];
-        // this.todos = <ITodo[]>response;
-      });
+    this.fetchAllTodos(10);
   }
 
   isFormToggled(): boolean {
@@ -57,6 +55,21 @@ export class AppComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
         this.todos = [todo, ...this.todos];
+        this.cdr.detectChanges();
+      });
+  }
+
+  fetchAllTodos(count?: number): void {
+    this.loading = true;
+    const limitString = count ? `?_limit=${count}` : '';
+    this.http.get(`https://jsonplaceholder.typicode.com/todos${limitString}`)
+      .pipe(
+        delay(Math.random()* 2000),
+      )
+      .subscribe(response => {
+        this.loading = false;
+        this.todos = response as ITodo[];
+        // this.todos = <ITodo[]>response;
         this.cdr.detectChanges();
       });
   }
