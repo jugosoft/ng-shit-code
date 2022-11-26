@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, EventEmitter, OnChanges, OnInit, Output, SimpleChanges, ViewEncapsulation } from '@angular/core';
 
 export interface IPost {
@@ -19,7 +20,12 @@ export class AppComponent implements OnInit {
 
   public newPost: IPost;
 
+  constructor(
+    private http: HttpClient,
+  ) { }
+
   ngOnInit(): void {
+    
   }
 
   isFormToggled(): boolean {
@@ -30,7 +36,7 @@ export class AppComponent implements OnInit {
     this.formToggled = new Boolean(!this.formToggled).valueOf();
   }
 
-  addPost(post: IPost){
+  addPost(post: IPost) {
     this.newPost = post;
     this.toggleForm();
   }

@@ -5,8 +5,7 @@ services:
     pull_policy: build
     build: 
       dockerfile: Dockerfile
-      context: .
+      context: /
     container_name: angularapp
     ports:
       - "4200:60000"
-      
