@@ -62,6 +62,20 @@ export class AppComponent implements OnInit {
     });
   }
 
+  finishTodo(id?: number) {
+    if (!id) {
+      return;
+    }
+    
+    this.todosService.finishTodo(id).subscribe(response => {
+      const modifiedTodo = this.todos.find(todo => todo.id === response.id);
+      if (modifiedTodo) {
+        modifiedTodo.completed = true;
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
   fetchAllTodos(count?: number) {
     this.todosService.fetchAllTodos(count).subscribe(response => {
       this.todos = response;

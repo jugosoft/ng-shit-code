@@ -23,4 +23,10 @@ export class AppService {
     const limitString = count ? `?_limit=${count}` : '';
     return this.http.get<ITodo[]>(`https://jsonplaceholder.typicode.com/todos${limitString}`);
   }
+
+  finishTodo(id: number): Observable<ITodo> {
+    return this.http.put<ITodo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+      completed: true,
+    });
+  }
 }
