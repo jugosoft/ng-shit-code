@@ -27,7 +27,7 @@ export class AppService {
 
     return this.http.get<ITodo[]>(`${this.API_URL}`, {
       headers,
-      params: new HttpParams().set('_limit', `${count}`),
+      params: count ? new HttpParams().set('_limit', `${count}`) : undefined,
     });
   }
 

@@ -12,6 +12,8 @@ import { PostsComponent } from './components/posts/posts.component';
 import { PostFormComponent } from './components/posts/post-form/post-form.component';
 import { PostComponent } from './components/posts/post/post.component';
 import { StarsComponent } from './components/stars/stars.component';
+import { generateInterceptor } from './commons/generate-interceptor';
+import { HeaderInterceptor } from './interceptors/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +33,9 @@ import { StarsComponent } from './components/stars/stars.component';
     ReactiveFormsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    generateInterceptor(HeaderInterceptor),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
