@@ -1,13 +1,14 @@
-FROM node:alpine
+# stage build
+FROM node:14.15.0-alpine as build
+WORKDIR /usr/src/app
 
-WORKDIR /user/src/app
-
-COPY package.json /user/src/app
-COPY package-lock.json /user/src/app
-
+COPY package*.json ./
 RUN npm install
 
-COPY . /user/src/app
+COPY . .
 
-EXPOSE 4200
-CMD /usr/src/app/node_modules/.bin/ng serve
+RUN npm run build 
+
+# stage hosting app
+FROM nginx:1.23-alpine
+COPY --from=build /usr/src/app/dist/ng-shit-code /usr/share/nginx/html
