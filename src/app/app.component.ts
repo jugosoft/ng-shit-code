@@ -48,6 +48,7 @@ export class AppComponent implements OnInit {
       completed: false,
     }).subscribe(response => {
       this.todos = [response, ...this.todos];
+      this.todoTitle = '';
       this.cdr.detectChanges();
     });
   }
