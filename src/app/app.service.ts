@@ -4,28 +4,29 @@ import { delay, Observable } from 'rxjs';
 import { ITodo } from './interfaces/ITodo';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AppService {
+  private readonly API_URL: string = 'https://jsonplaceholder.typicode.com/todos';
   constructor(
     private http: HttpClient
   ) { }
 
   removeTodo(id?: number): Observable<null> {
-    return this.http.delete<null>(`https://jsonplaceholder.typicode.com/todos/${id}`);
+    return this.http.delete<null>(`${this.API_URL}/${id}`);
   }
 
   addTodo(todo: ITodo): Observable<ITodo> {
-    return this.http.post<ITodo>('https://jsonplaceholder.typicode.com/todos', todo);
+    return this.http.post<ITodo>(`${this.API_URL}`, todo);
   }
 
   fetchAllTodos(count?: number): Observable<ITodo[]> {
     const limitString = count ? `?_limit=${count}` : '';
-    return this.http.get<ITodo[]>(`https://jsonplaceholder.typicode.com/todos${limitString}`);
+    return this.http.get<ITodo[]>(`${this.API_URL}/${limitString}`);
   }
 
   finishTodo(id: number): Observable<ITodo> {
-    return this.http.put<ITodo>(`https://jsonplaceholder.typicode.com/todos/${id}`, {
+    return this.http.put<ITodo>(`${this.API_URL}/${id}`, {
       completed: true,
     });
   }

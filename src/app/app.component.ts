@@ -12,6 +12,7 @@ import { AppService } from './app.service';
 })
 export class AppComponent implements OnInit {
   private formToggled: boolean = false;
+  public error: string;
   public newPost: IPost;
   public todos: ITodo[];
   public todoTitle: string;
@@ -23,10 +24,16 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.error = '';
+
     this.todosService.fetchAllTodos(10).subscribe(response => {
       this.todos = response;
       this.cdr.detectChanges();
+    }, error => {
+      this.error = error?.message;
+      this.cdr.detectChanges();
     });
+    
   }
 
   isFormToggled(): boolean {
@@ -43,6 +50,8 @@ export class AppComponent implements OnInit {
   }
 
   addTodo() {
+    this.error = '';
+
     this.todosService.addTodo({
       title: this.todoTitle,
       completed: false,
@@ -50,15 +59,23 @@ export class AppComponent implements OnInit {
       this.todos = [response, ...this.todos];
       this.todoTitle = '';
       this.cdr.detectChanges();
+    }, error => {
+      this.error = error?.message;
+      this.cdr.detectChanges();
     });
   }
 
   removeTodo(id?: number) {
+    this.error = '';
+    
     this.todosService.removeTodo(id).subscribe(response => {
       if (response) {
         this.todos = this.todos.filter(todo => todo.id !== id);
         this.cdr.detectChanges();
       }
+    }, error => {
+      this.error = error?.message;
+      this.cdr.detectChanges();
     });
   }
 
@@ -66,19 +83,29 @@ export class AppComponent implements OnInit {
     if (!id) {
       return;
     }
-    
+
+    this.error = '';
+
     this.todosService.finishTodo(id).subscribe(response => {
       const modifiedTodo = this.todos.find(todo => todo.id === response.id);
       if (modifiedTodo) {
         modifiedTodo.completed = true;
         this.cdr.detectChanges();
       }
+    }, error => {
+      this.error = error?.message;
+      this.cdr.detectChanges();
     });
   }
 
   fetchAllTodos(count?: number) {
+    this.error = '';
+
     this.todosService.fetchAllTodos(count).subscribe(response => {
       this.todos = response;
+      this.cdr.detectChanges();
+    }, error => {
+      this.error = error?.message;
       this.cdr.detectChanges();
     });
   }
