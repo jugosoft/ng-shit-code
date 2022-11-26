@@ -18,7 +18,7 @@
                 placeholder="Название"
             >
             <button (click)="addTodo()">Добавить</button>
-            <button (click)="fetchAllTodos()">Загрузить все дела</button>
+            <button (click)="todosService.fetchAllTodos()">Загрузить все дела</button>
         </div>
     </div>
     <div *ngIf="!loading; else loadingBlock">
@@ -41,8 +41,5 @@
             <h4>Нет дел для отображения</h4>
         </ng-template>
     </div>
-
     <ng-template #loadingBlock>Загрузка списка</ng-template>
-    <br>
-    <!-- <app-posts [newPost]="this.newPost"></app-posts> -->
 </div>

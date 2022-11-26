@@ -1,8 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, OnInit, ViewEncapsulation } from '@angular/core';
 import { ITodo } from './interfaces/ITodo';
 import { IPost } from './interfaces/IPost';
-import { delay } from 'rxjs';
+import { AppService } from './app.service';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +12,21 @@ import { delay } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   private formToggled: boolean = false;
-  public todos: ITodo[];
   public newPost: IPost;
+  public todos: ITodo[];
   public todoTitle: string;
   loading: boolean = false;
 
   constructor(
-    private http: HttpClient,
     private cdr: ChangeDetectorRef,
+    public todosService: AppService,
   ) { }
 
   ngOnInit(): void {
-    this.fetchAllTodos(10);
+    this.todosService.fetchAllTodos(10).subscribe(response => {
+      this.todos = response;
+      this.cdr.detectChanges();
+    });
   }
 
   isFormToggled(): boolean {
@@ -40,50 +42,29 @@ export class AppComponent implements OnInit {
     this.toggleForm();
   }
 
-  removeTodo(id?: number) {
-    if (!id) {
-      return
-    }
-
-    this.http.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-      .subscribe(response => {
-        console.log(response);
-        this.todos = this.todos.filter(todo => todo.id !== id);
-        this.cdr.detectChanges();
-      });
-  }
-
-  addTodo(): void {
-    if (this.todoTitle && !this.todoTitle.trim()) {
-      return;
-    }
-
-    const todo: ITodo = {
+  addTodo() {
+    this.todosService.addTodo({
       title: this.todoTitle,
       completed: false,
-    }
-
-    this.todoTitle = '';
-    this.http.post<ITodo>('https://jsonplaceholder.typicode.com/todos', todo)
-      .subscribe(response => {
-        console.log(response);
-        this.todos = [response, ...this.todos];
-        this.cdr.detectChanges();
-      });
+    }).subscribe(response => {
+      this.todos = [response, ...this.todos];
+      this.cdr.detectChanges();
+    });
   }
 
-  fetchAllTodos(count?: number): void {
-    this.loading = true;
-    const limitString = count ? `?_limit=${count}` : '';
-    this.http.get(`https://jsonplaceholder.typicode.com/todos${limitString}`)
-      .pipe(
-        delay(Math.random() * 2000),
-      )
-      .subscribe(response => {
-        this.loading = false;
-        this.todos = response as ITodo[];
-        // this.todos = <ITodo[]>response;
+  removeTodo(id?: number) {
+    this.todosService.removeTodo(id).subscribe(response => {
+      if (response) {
+        this.todos = this.todos.filter(todo => todo.id !== id);
         this.cdr.detectChanges();
-      });
+      }
+    });
+  }
+
+  fetchAllTodos(count?: number) {
+    this.todosService.fetchAllTodos(count).subscribe(response => {
+      this.todos = response;
+      this.cdr.detectChanges();
+    });
   }
 }
