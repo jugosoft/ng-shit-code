@@ -40,6 +40,19 @@ export class AppComponent implements OnInit {
     this.toggleForm();
   }
 
+  removeTodo(id?: number) {
+    if (!id) {
+      return
+    }
+
+    this.http.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .subscribe(response => {
+        console.log(response);
+        this.todos = this.todos.filter(todo => todo.id !== id);
+        this.cdr.detectChanges();
+      });
+  }
+
   addTodo(): void {
     if (this.todoTitle && !this.todoTitle.trim()) {
       return;
@@ -54,7 +67,7 @@ export class AppComponent implements OnInit {
     this.http.post<ITodo>('https://jsonplaceholder.typicode.com/todos', todo)
       .subscribe(response => {
         console.log(response);
-        this.todos = [todo, ...this.todos];
+        this.todos = [response, ...this.todos];
         this.cdr.detectChanges();
       });
   }
@@ -64,7 +77,7 @@ export class AppComponent implements OnInit {
     const limitString = count ? `?_limit=${count}` : '';
     this.http.get(`https://jsonplaceholder.typicode.com/todos${limitString}`)
       .pipe(
-        delay(Math.random()* 2000),
+        delay(Math.random() * 2000),
       )
       .subscribe(response => {
         this.loading = false;
