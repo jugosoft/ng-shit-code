@@ -15,7 +15,6 @@ export interface IPost {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  // @Output() onAdd: EventEmitter<IPost> = new EventEmitter<IPost>();
   private formToggled: boolean = false;
 
   public newPost: IPost;
@@ -25,7 +24,11 @@ export class AppComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    
+    this.http.get('https://jsonplaceholder.typicode.com/todos')
+      .subscribe(response => {
+        console.log((<object[]>response).length);
+        console.log(response);
+      });
   }
 
   isFormToggled(): boolean {
