@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { IPost } from 'src/app/app.component';
+import { IPost } from 'src/app/interfaces/IPost';
 import { PostsService } from './posts.service';
 
 @Component({

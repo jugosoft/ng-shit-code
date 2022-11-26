@@ -73,7 +73,9 @@ small:hover {
     outline: 5px solid lightgreen;
 }
 
-input, select, textarea {
+input,
+select,
+textarea {
     display: block;
     width: 100%;
     padding: 0.4rem;
@@ -84,6 +86,24 @@ input, select, textarea {
     border-radius: 4px;
 }
 
-input:hover, select:hover, textarea:hover {
+input:hover,
+select:hover,
+textarea:hover {
     outline: 2px solid lightgreen;
+}
+
+.card {
+    padding: 1rem;
+    border: 1px dotted black;
+    border-radius: 5px;
+    margin: 0.7rem 0;
+
+    p {
+        display: flex;
+        justify-content: space-between;
+
+        span.completed {
+            text-decoration: line-through;
+        }
+    }
 }

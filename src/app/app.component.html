@@ -1,11 +1,32 @@
 <div class="container">
-  <h1>Посты пользователя сети {{ 'Интернет' | stringRepeater }}</h1>
-  <div>
-    <button (click)="toggleForm()">Показатb форму</button>
-  </div>
-  <div *appMyNgIf="isFormToggled()">
-    <app-post-form (onAdd)="addPost($event)"></app-post-form>
-  </div>
-  <br>
-  <!-- <app-posts [newPost]="this.newPost"></app-posts> -->
+    <div>
+        <button (click)="toggleForm()">Показатb форму</button>
+    </div>
+    <div *appMyNgIf="isFormToggled()">
+        <app-post-form (onAdd)="addPost($event)"></app-post-form>
+    </div>
+    <br>
+    <div>
+        <h4>Всего задач {{todos.length}}</h4>
+    </div>
+
+    <div>
+        <h4>Новая задача</h4>
+        <div class="card">
+            <input type="text" name="title" id="title" [(ngModel)]="todoTitle" placeholder="Название"/>
+            <button (click)="addTodo()">Добавить</button>
+        </div>
+    </div>
+
+    <div class="card" *ngFor="let todo of todos">
+        <p>
+            <span [class.completed]="todo.completed">{{todo.title}}</span>
+            <span>
+                <button>Удалить</button>
+                <button [disabled]="todo.completed" >Завершить</button>
+            </span>
+        </p>
+    </div>
+    <br>
+    <!-- <app-posts [newPost]="this.newPost"></app-posts> -->
 </div>

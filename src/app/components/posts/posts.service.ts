@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { IPost } from "src/app/app.component";
+import { IPost } from "src/app/interfaces/IPost";
 
 @Injectable()
 export class PostsService {

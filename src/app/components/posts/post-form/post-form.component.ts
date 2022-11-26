@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { IPost } from 'src/app/app.component';
+import { IPost } from 'src/app/interfaces/IPost';
 import { createForbiddenUsersValidator, createPasswordStrengthValidator } from 'src/app/validators/custom.validator';
 
 @Component({
