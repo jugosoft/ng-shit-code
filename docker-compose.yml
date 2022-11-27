@@ -1,10 +1,10 @@
-version: "3.8"
+version: "3.0"
 
 services:
   angularapp:
     build: 
       dockerfile: Dockerfile
-      context: /
+      context: .
     container_name: angularapp
     ports:
       - "4321:80"
