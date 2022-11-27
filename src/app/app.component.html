@@ -6,53 +6,7 @@
         <app-post-form (onAdd)="addPost($event)"></app-post-form>
     </div>
     <br>
-
     <div>
-        <h4>Новая задача</h4>
-        <div class="card">
-            <input
-                type="text"
-                name="title"
-                id="title"
-                [(ngModel)]="todoTitle"
-                placeholder="Название"
-            >
-            <button (click)="addTodo()">Добавить</button>
-            <button (click)="fetchAllTodos()">Загрузить все дела</button>
-        </div>
+        <router-outlet></router-outlet>
     </div>
-
-    <div *ngIf="error; else loadedWithoutErrors">
-        <h4 style="color: red;">Ошибка: {{error}}</h4>
-    </div>
-    <ng-template #loadedWithoutErrors>
-
-        <div *ngIf="!loading; else loadingBlock">
-            <div *ngIf="todos && todos.length; else noTodoElements">
-                <h4>Всего задач {{todos && todos.length}}</h4>
-                <div
-                    class="card"
-                    *ngFor="let todo of todos"
-                >
-                    <p>
-                        <span [class.completed]="todo.completed">{{todo.title}}</span>
-                        <span>
-                            <button (click)="removeTodo(todo.id)">Удалить</button>
-                            <button
-                                (click)="finishTodo(todo.id)"
-                                [disabled]="todo.completed"
-                            >
-                                Завершить
-                            </button>
-                        </span>
-                    </p>
-                </div>
-            </div>
-            <ng-template #noTodoElements>
-                <h4>Нет дел для отображения</h4>
-            </ng-template>
-        </div>
-    </ng-template>
-
-    <ng-template #loadingBlock>Загрузка списка</ng-template>
 </div>

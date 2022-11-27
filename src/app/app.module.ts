@@ -14,6 +14,9 @@ import { PostComponent } from './components/posts/post/post.component';
 import { StarsComponent } from './components/stars/stars.component';
 import { generateInterceptor } from './commons/generate-interceptor';
 import { HeaderInterceptor } from './interceptors/header.interceptor';
+import { HomeComponent } from './components/home/home.component';
+import { AboutComponent } from './components/about/about.component';
+import { RoutingModule } from './routing/routing.module';
 
 @NgModule({
   declarations: [
@@ -26,12 +29,15 @@ import { HeaderInterceptor } from './interceptors/header.interceptor';
     DividerPipe,
     StringRepeaterPipe,
     StarsComponent,
+    HomeComponent,
+    AboutComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    RoutingModule,
   ],
   providers: [
     generateInterceptor(HeaderInterceptor),
