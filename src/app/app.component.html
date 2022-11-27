@@ -1,5 +1,10 @@
 <div class="container">
     <div>
+        <a [routerLink]="['/']">Главная</a>
+        <a [routerLink]="['/posts']">Записки пользователя</a>
+        <a [routerLink]="['/about']">Про нас</a>
+    </div>
+    <div>
         <button (click)="toggleForm()">Показатb форму</button>
     </div>
     <div *appMyNgIf="isFormToggled()">
