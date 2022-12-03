@@ -17,6 +17,7 @@ import { HeaderInterceptor } from './interceptors/header.interceptor';
 import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { RoutingModule } from './routing/routing.module';
+import { PostDetailComponent } from './components/posts/post-detail/post-detail.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { RoutingModule } from './routing/routing.module';
     StarsComponent,
     HomeComponent,
     AboutComponent,
+    PostDetailComponent,
   ],
   imports: [
     BrowserModule,
