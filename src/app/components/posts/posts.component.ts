@@ -30,8 +30,9 @@ export class PostsComponent implements OnInit, OnChanges {
   onShowAuthor() {
     this.router.navigate(['/posts'], {
       queryParams: {
-        showAuthor: true,
-      }
+        showAuthor: true
+      },
+      fragment: 'fragFromClick'
     });
   }
 
@@ -39,6 +40,8 @@ export class PostsComponent implements OnInit, OnChanges {
     this.route.queryParams.subscribe(params => {
       this.showAuthor = !!params['showAuthor'];
     });
+
+    alert(this.route.fragment);
   }
 
   getPosts() {

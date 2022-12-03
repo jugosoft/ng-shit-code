@@ -1,12 +1,13 @@
 <button
     routerLink="/posts"
-    (click)="onShowAuthor()"  
+    (click)="onShowAuthor()"
 >
     Показывать автора поста_copy
 </button>
 <button
     routerLink="/posts"
     [queryParams]="{showAuthor: true}"    
+    fragment="frag"
 >
     Показывать автора поста
 </button>
