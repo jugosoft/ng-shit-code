@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IPost } from 'src/app/interfaces/IPost';
 import { PostsService } from './posts.service';
 
@@ -10,11 +11,13 @@ import { PostsService } from './posts.service';
   providers:[PostsService],
 })
 export class PostsComponent implements OnInit, OnChanges {
-
-  @Input() newPost: IPost;
-
+  
+  showAuthor = false;
+  
   constructor(
     private postsService: PostsService,
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -24,7 +27,18 @@ export class PostsComponent implements OnInit, OnChanges {
     }
   }
 
+  onShowAuthor() {
+    this.router.navigate(['/posts'], {
+      queryParams: {
+        showAuthor: true,
+      }
+    });
+  }
+
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.showAuthor = !!params['showAuthor'];
+    });
   }
 
   getPosts() {

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { IPost } from 'src/app/interfaces/IPost';
 
 
@@ -12,10 +13,9 @@ export class PostComponent implements OnInit {
   @Input('axaxaxaxa') post: IPost;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor() { }
+  constructor( ) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   deletePost(id: string): boolean {
     if (!id) {
