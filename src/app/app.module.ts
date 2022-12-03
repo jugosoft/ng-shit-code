@@ -20,6 +20,7 @@ import { RoutingModule } from './routing/routing.module';
 import { PostDetailComponent } from './components/posts/post-detail/post-detail.component';
 import { PostsService } from './components/posts/posts.service';
 import { AboutAdditionalComponent } from './components/about-additional/about-additional.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AboutAdditionalComponent } from './components/about-additional/about-ad
     AboutComponent,
     PostDetailComponent,
     AboutAdditionalComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
