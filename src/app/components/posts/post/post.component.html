@@ -1,10 +1,11 @@
-<div class="post">
+<div
+    class="post"
+    [routerLink]="['/posts', post.id]"
+>
     <h2>{{post.title}}</h2>
     <p>{{post.text}}</p>
     <hr>
     <ng-content></ng-content>
     <hr>
-    <button
-        (click)="deletePost(post.id)"
-    >Удалить</button>
+    <button (click)="deletePost(post.id)">Удалить</button>
 </div>

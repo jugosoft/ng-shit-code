@@ -18,6 +18,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AboutComponent } from './components/about/about.component';
 import { RoutingModule } from './routing/routing.module';
 import { PostDetailComponent } from './components/posts/post-detail/post-detail.component';
+import { PostsService } from './components/posts/posts.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { PostDetailComponent } from './components/posts/post-detail/post-detail.
   ],
   providers: [
     generateInterceptor(HeaderInterceptor),
+    PostsService,
   ],
   bootstrap: [AppComponent]
 })

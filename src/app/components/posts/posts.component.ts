@@ -35,7 +35,7 @@ export class PostsComponent implements OnInit, OnChanges {
     this.postsService.posts.push(post);
   }
 
-  deletePost(id: number) {
+  deletePost(id: string) {
     this.postsService.posts = this.postsService.posts.filter(post => post.id !== id);
   }
 }

@@ -10,15 +10,15 @@ import { IPost } from 'src/app/interfaces/IPost';
 export class PostComponent implements OnInit {
 
   @Input('axaxaxaxa') post: IPost;
-  @Output() onDelete: EventEmitter<number> = new EventEmitter<number>();
+  @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  deletePost(id: number): boolean {
-    if (!id || id < 0) {
+  deletePost(id: string): boolean {
+    if (!id) {
       return false;
     }
 
