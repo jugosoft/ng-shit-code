@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ViewEnca
 import { ITodo } from './interfaces/ITodo';
 import { IPost } from './interfaces/IPost';
 import { AppService } from './app.service';
+import { Meta, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,8 @@ export class AppComponent implements OnInit {
   constructor(
     private cdr: ChangeDetectorRef,
     public todosService: AppService,
+    private title: Title,
+    private meta: Meta,
   ) { }
 
   ngOnInit(): void {
@@ -33,7 +36,11 @@ export class AppComponent implements OnInit {
       this.error = error?.message;
       this.cdr.detectChanges();
     });
-    
+
+    this.title.setTitle('PRogram defined title of page');
+    this.meta.addTags([
+      { name: 'keywords', content: 'ng,angular,vegie' }
+    ])
   }
 
   isFormToggled(): boolean {
@@ -67,7 +74,7 @@ export class AppComponent implements OnInit {
 
   removeTodo(id?: number) {
     this.error = '';
-    
+
     this.todosService.removeTodo(id).subscribe(response => {
       if (response) {
         this.todos = this.todos.filter(todo => todo.id !== id);
