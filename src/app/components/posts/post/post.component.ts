@@ -10,12 +10,18 @@ import { IPost } from 'src/app/interfaces/IPost';
 })
 export class PostComponent implements OnInit {
 
-  @Input('axaxaxaxa') post: IPost;
+  public post: IPost;
   @Output() onDelete: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor( ) { }
+  constructor(
+    private readonly route: ActivatedRoute
+  ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.route.params.subscribe(data => {
+      this.post = data['post'];
+    });
+  }
 
   deletePost(id: string): boolean {
     if (!id) {

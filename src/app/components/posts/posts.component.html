@@ -12,7 +12,7 @@
     Показывать автора поста
 </button>
 <div *ngIf="getPosts().length; else noPosts">
-    <app-post (onDelete)="deletePost($event)" *ngFor="let post of getPosts()" [axaxaxaxa]="post">
+    <app-post (onDelete)="deletePost($event)" *ngFor="let post of getPosts()" [routerLink]="['/posts', post.id]">
        <p *ngIf="showAuthor">{{post.author}}</p>
     </app-post>
 </div>
