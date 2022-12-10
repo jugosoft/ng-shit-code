@@ -13,8 +13,8 @@ const routes: Routes = [
   { path: 'posts', component: PostsComponent },
   { path: 'posts/:id', component: PostDetailComponent },
   {
-    path: 'about', component: AboutComponent, children: [{
-      path: 'additional', component: AboutAdditionalComponent, canActivate: [RandomAccessGuard]
+    path: 'about', component: AboutComponent, canActivateChild: [RandomAccessGuard], children: [{
+      path: 'additional', component: AboutAdditionalComponent
     }]
   },
   { path: '**', component: NotFoundComponent }
